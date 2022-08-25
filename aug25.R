@@ -1,4 +1,4 @@
-data.raw <- read.csv("inflation.csv", header=TRUE)
+data.raw <- read.csv("https://raw.githubusercontent.com/bachmeil/econ-686-fall-2022/main/inflation.csv", header=TRUE)
 data.raw
 dim(data.raw)
 class(data.raw)

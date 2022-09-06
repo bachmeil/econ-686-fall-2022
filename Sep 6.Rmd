@@ -1,0 +1,118 @@
+---
+title: "Sep 6"
+output: html_document
+---
+
+# Markdown
+
+Document formats:
+
+- Word
+- HTML
+- PDF
+- Markdown
+
+Export to many other formats.
+
+- HTML
+- Lightweight
+- Markdown variants
+  - Original
+  - Github
+  - Pandoc
+- R Markdown calls Pandoc
+
+# Literate Programming
+
+- Write a document
+- Have R code inside it
+- Runs R code and inserts output for you
+- Make changes easily
+- Complete record of everything you've done
+- Easy verification
+- Easy sharing
+- Get distributable documents for free
+
+# Relationship between rainfall and harvest
+
+`#` is a section heading.
+
+## Analysis
+
+### Description
+
+I'm working with harvest and rainfall data for the last few years. This is a small dataset. It's all that I have.
+
+```{r}
+rain <- c(30, 32, 18, 24, 38, 32)
+harvest <- c(150, 145, 55, 70, 180, 150)
+plot(rain, harvest, ylim=c(0, 200), xlim=c(0, 50))
+abline(a=-75, b=7)
+lm(harvest ~ rain)
+```
+
+What about R code you don't want to run?
+
+```
+lm(harvest ~ rain)
+```
+
+The code was: `lm(harvest ~ rain)`
+
+```{r, echo=FALSE}
+rain <- c(30, 32, 18, 24, 38, 32)
+harvest <- c(150, 145, 55, 70, 180, 150)
+plot(rain, harvest, ylim=c(0, 200), xlim=c(0, 50))
+abline(a=-75, b=7)
+lm(harvest ~ rain)
+```
+
+```{r, }
+rain <- c(30, 32, 18, 24, 38, 32)
+harvest <- c(150, 145, 55, 70, 180, 150)
+plot(rain, harvest, ylim=c(0, 200), xlim=c(0, 50))
+abline(a=-75, b=7)
+lm(harvest ~ rain)
+```
+
+- *italics*
+- **bold**
+- Lists start with `- `
+  - Sublist
+  - Second sublist item
+- Equations $\sum_{i=1}^{4} \xi_{i}$
+- Line breaks
+
+This is not
+broken.
+
+This is  
+broken.
+
+# Estimating the Mean
+
+```{r}
+harvest <- c(150, 145, 55, 70, 180, 150)
+lm(harvest ~ 1)
+mean(harvest)
+```
+
+# Steps Ahead
+
+Forecast one step ahead: If data ends in July 2022, predict August 2022.
+
+
+Forecast two steps ahead: If data ends in July 2022, predict September 2022.
+
+```{r}
+data.raw <- read.csv("inflation.csv", header=TRUE)
+names(data.raw) <- c("date", "dcpi")
+dcpi <- ts(data.raw[,"dcpi"], start=c(1948,1), frequency=12)
+library(tstools)
+last(dcpi)
+```
+
+One step naive forecast: 8.5%
+
+Two step naive forecast: 8.5%
+

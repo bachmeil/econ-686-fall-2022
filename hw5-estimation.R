@@ -1,0 +1,12 @@
+library(tstools)
+oil <- import.fred("oilprice.csv")
+gas <- import.fred("gasprice.csv")
+doil <- pctChange(oil, 12)
+dgas <- pctChange(gas, 12)
+fit.ar1 <- tsreg(dgas, lags(dgas, 1))
+fit.ar1
+rhs <- lags(dgas %~% doil, 1)
+tsreg(dgas, rhs)
+tsreg(doil, rhs)
+last(dgas)
+last(doil)
